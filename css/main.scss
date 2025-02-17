@@ -1,0 +1,501 @@
+//use sass.math
+
+//Mixins
+@function breakpoint-next(
+  $name,
+  $breakpoints: $grid-breakpoints,
+  $breakpoint-names: map-keys($breakpoints)
+) {
+  $n: index($breakpoint-names, $name);
+  @return if(
+    $n < length($breakpoint-names),
+    nth($breakpoint-names, $n + 1),
+    null
+  );
+}
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min !=0, $min, null);
+}
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - 0.02px, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) ==null, "", "#{$name}");
+}
+
+// Responsive mixins
+@mixin media-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-down($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $current: map-get($breakpoints, $name);
+  $current-max: $current - 0.02px;
+
+  @if $min {
+    @media (max-width: $current-max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+  $current-upper: map-get($breakpoints, $upper);
+  $current-upper-max: $current-upper - 0.02px;
+
+  @if $min !=null {
+    @media (min-width: $min) and (max-width: $current-upper-max) {
+      @content;
+    }
+  } @else if $min==null {
+    @include media-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+//Fonts
+//Monserrat
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Thin.woff2);
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-ExtraLight.woff2);
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Light.woff2);
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Regular.woff2);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Medium.woff2);
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-SemiBold.woff2);
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Bold.woff2);
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-ExtraBold.woff2);
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Black.woff2);
+  font-weight: 900;
+  font-style: normal;
+}
+
+//Variables
+$font-monstserrat: "Montserrat";
+$footer-title-color: #000080;
+$footer-link-color: #000099;
+$section-title-color: #660066;
+$heroshot-color-title: #da4d4d;
+$about-title-color: #cc0052;
+$header-background: #c7c1c1;
+$color-title-header: #993366;
+$service-color-text: #800040;
+$button-background: #ebe3e3;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+//Header
+header {
+  background: $header-background;
+  margin: 10px;
+  height: 100px;
+  max-width: 1500px;
+  margin-top: 0 auto;
+  .header-container {
+    display: flex;
+    justify-content: space-around;
+    .logo-header {
+      flex: 1;
+      img {
+        padding: 10px;
+        max-width: 150px;
+      }
+    }
+    .burger-menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 2;
+    }
+    .menu-data {
+      display: flex;
+      gap: 20px;
+      a {
+        text-decoration: overline;
+        justify-content: center;
+        font-family: $font-monstserrat;
+        font-size: 16px;
+        font-weight: 600;
+        color: $color-title-header;
+        transition: all 0.54s ease-in-out;
+        text-transform: uppercase;
+        &:hover {
+          transform: scale(1.1);
+          transition: all 0.54s ease-in-out;
+          color: #ae00ff;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .header-icons {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-right: 15px;
+      transition: all 0.54s ease-in-out;
+      a img {
+        width: 24px;
+        height: 24px;
+        &:hover {
+          transform: scale(1.1);
+          transition: all 0.54s ease-in-out;
+          background-color: #ae00ff;
+        }
+      }
+    }
+  }
+}
+#home,
+#service,
+#aboutussec,
+#footer,
+#partners-id {
+  display: none;
+  visibility: hidden;
+  opacity: 1;
+}
+
+//Heroshot
+.heroshot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(214, 202, 202);
+  border-top-left-radius: 150px;
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 130px;
+  border-color: rgb(247, 110, 110);
+  margin-bottom: 10px;
+  color: $heroshot-color-title;
+
+  .title-heroshot {
+    font-family: $font-monstserrat;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    font-weight: 900;
+    font-size: 50px;
+    padding-left: 30px;
+  }
+
+  .image-heroshot {
+    display: flex;
+    right: 60px;
+    padding-right: 30px;
+    object-fit: none;
+    margin: 10px;
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+//Services
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 3;
+  margin: 20px 20px 20px 20px;
+  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
+
+  .services-container {
+    padding: 20px;
+    margin: 20px;
+    height: 350px;
+    width: 250px;
+    left: 60px;
+    background: #ffe6e6;
+    position: relative;
+
+    .image-title-container {
+      h2 {
+        font-family: $font-monstserrat;
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+        color: #660066;
+      }
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 15px;
+      }
+    }
+    .info-container {
+      p {
+        font-family: $font-monstserrat;
+        font-weight: 400;
+        font-size: 17px;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: $service-color-text;
+        letter-spacing: 1px;
+      }
+      button {
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 100px;
+        background-color: $button-background;
+        color: rgb(2, 0, 2);
+        background-color: $button-background;
+        border-radius: 50px;
+        border-color: 3px solid black;
+        text-align: center;
+        transition: all 0.45s ease-in;
+        transform: scale(1.1);
+        &:hover {
+          transition: all 0.45s ease-in;
+          transform: scale(1.1);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+//About us part
+.about-us {
+  background-color: rgb(218, 191, 191);
+  max-width: 1200;
+  max-height: 500;
+  .about-us-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    padding: 20px 20px 20px 20px;
+    gap: 20%;
+
+    .image-about {
+      padding-left: 70px;
+      box-shadow: 20px 20px 5px rgb(167, 216, 247);
+    }
+
+    .text-about-us {
+      margin-right: 60px;
+    }
+
+    .text-about-us h2 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 170px;
+      margin-bottom: 20px !important;
+      font-family: $font-monstserrat;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: $about-title-color;
+      font-size: 55px;
+      color: rgb(60, 2, 56);
+      animation-name: title;
+      animation-duration: 6s;
+    }
+    @keyframes title {
+      from {
+        color: $about-title-color;
+      }
+      to {
+        color: rgb(60, 2, 56);
+      }
+    }
+
+    .text-about-us p {
+      font-family: $font-monstserrat;
+      font-weight: 600;
+      font-size: 32px;
+      text-align: center;
+      text-transform: uppercase;
+      color: rgb(60, 2, 56);
+      animation-name: paragraph;
+      animation-duration: 6s;
+    }
+    @keyframes paragraph {
+      from {
+        color: $about-title-color;
+      }
+      to {
+        color: rgb(60, 2, 56);
+      }
+    }
+  }
+}
+//Partnership
+.partners {
+  margin-top: 30px;
+  box-sizing: border-box;
+  opacity: 1;
+  .section-title {
+    text-align: center;
+    color: $section-title-color;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: $font-monstserrat;
+    font-weight: 200;
+    font-size: 36px;
+    letter-spacing: 2px;
+  }
+  .container-partners {
+    background-color: rgb(247, 204, 204);
+    margin: 40px;
+
+    .image-container {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      gap: 25px;
+      align-items: center;
+      padding: 10px;
+    }
+    .biotrade {
+      background-color: white !important;
+    }
+    .janssen {
+      background-color: white !important;
+    }
+  }
+}
+//Footer
+footer {
+  background: rgb(252, 225, 223);
+  background: linear-gradient(
+    90deg,
+    rgba(252, 225, 223, 1) 0%,
+    rgba(251, 144, 144, 1) 100%
+  );
+  overflow-x: hidden;
+  height: 300px;
+  margin-top: 15px;
+
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 50px 30px;
+  }
+  .footer-section {
+    margin: 15px;
+    margin-top: 30px;
+  }
+
+  h4 {
+    font-family: $font-monstserrat;
+    color: $footer-title-color;
+    font-weight: 700;
+    font-size: 28px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 1.2px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0px;
+
+    li {
+      margin-bottom: 5px;
+
+      a {
+        text-decoration: none;
+        color: $footer-link-color;
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+        text-transform: uppercase;
+        font-family: $font-monstserrat;
+        font-weight: 500;
+        transition: transform 0.54s ease-in;
+        &:hover {
+          &:hover {
+            transform: scale(1.1);
+            filter: brightness(0) saturate(100%) invert(10%) sepia(49%)
+              saturate(5765%) hue-rotate(246deg) brightness(80%) contrast(121%);
+          }
+        }
+      }
+    }
+  }
+
+  .social-icons {
+    a img {
+      gap: 5px;
+      text-decoration: none;
+      transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+      &:hover {
+        transform: scaleX(1.1);
+      }
+    }
+  }
+}

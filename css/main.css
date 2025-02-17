@@ -1,0 +1,383 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Thin.woff2);
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-ExtraLight.woff2);
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Light.woff2);
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Regular.woff2);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Medium.woff2);
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-SemiBold.woff2);
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Bold.woff2);
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-ExtraBold.woff2);
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Black.woff2);
+  font-weight: 900;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+header {
+  background: #c7c1c1;
+  margin: 10px;
+  height: 100px;
+  max-width: 1500px;
+  margin-top: 0 auto;
+}
+header .header-container {
+  display: flex;
+  justify-content: space-around;
+}
+header .header-container .logo-header {
+  flex: 1;
+}
+header .header-container .logo-header img {
+  padding: 10px;
+  max-width: 150px;
+}
+header .header-container .burger-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+}
+header .header-container .menu-data {
+  display: flex;
+  gap: 20px;
+}
+header .header-container .menu-data a {
+  text-decoration: overline;
+  justify-content: center;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: 600;
+  color: #993366;
+  transition: all 0.54s ease-in-out;
+  text-transform: uppercase;
+}
+header .header-container .menu-data a:hover {
+  transform: scale(1.1);
+  transition: all 0.54s ease-in-out;
+  color: #ae00ff;
+  cursor: pointer;
+}
+header .header-container .header-icons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-right: 15px;
+  transition: all 0.54s ease-in-out;
+}
+header .header-container .header-icons a img {
+  width: 24px;
+  height: 24px;
+}
+header .header-container .header-icons a img:hover {
+  transform: scale(1.1);
+  transition: all 0.54s ease-in-out;
+  background-color: #ae00ff;
+}
+
+#home,
+#service,
+#aboutussec,
+#footer,
+#partners-id {
+  display: none;
+  visibility: hidden;
+  opacity: 1;
+}
+
+.heroshot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(214, 202, 202);
+  border-top-left-radius: 150px;
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 130px;
+  border-color: rgb(247, 110, 110);
+  margin-bottom: 10px;
+  color: #da4d4d;
+}
+.heroshot .title-heroshot {
+  font-family: "Montserrat";
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  font-weight: 900;
+  font-size: 50px;
+  padding-left: 30px;
+}
+.heroshot .image-heroshot {
+  display: flex;
+  right: 60px;
+  padding-right: 30px;
+  object-fit: none;
+  margin: 10px;
+}
+.heroshot .image-heroshot img {
+  border-radius: 50%;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 3;
+  margin: 20px 20px 20px 20px;
+  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
+}
+.services .services-container {
+  padding: 20px;
+  margin: 20px;
+  height: 350px;
+  width: 250px;
+  left: 60px;
+  background: #ffe6e6;
+  position: relative;
+}
+.services .services-container .image-title-container h2 {
+  font-family: "Montserrat";
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  color: #660066;
+}
+.services .services-container .image-title-container img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+}
+.services .services-container .info-container p {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 17px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #800040;
+  letter-spacing: 1px;
+}
+.services .services-container .info-container button {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100px;
+  background-color: #ebe3e3;
+  color: rgb(2, 0, 2);
+  background-color: #ebe3e3;
+  border-radius: 50px;
+  border-color: 3px solid black;
+  text-align: center;
+  transition: all 0.45s ease-in;
+  transform: scale(1.1);
+}
+.services .services-container .info-container button:hover {
+  transition: all 0.45s ease-in;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.about-us {
+  background-color: rgb(218, 191, 191);
+  max-width: 1200;
+  max-height: 500;
+}
+.about-us .about-us-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding: 20px 20px 20px 20px;
+  gap: 20%;
+}
+.about-us .about-us-container .image-about {
+  padding-left: 70px;
+  box-shadow: 20px 20px 5px rgb(167, 216, 247);
+}
+.about-us .about-us-container .text-about-us {
+  margin-right: 60px;
+}
+.about-us .about-us-container .text-about-us h2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 170px;
+  margin-bottom: 20px !important;
+  font-family: "Montserrat";
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #cc0052;
+  font-size: 55px;
+  color: rgb(60, 2, 56);
+  animation-name: title;
+  animation-duration: 6s;
+}
+@keyframes title {
+  from {
+    color: #cc0052;
+  }
+  to {
+    color: rgb(60, 2, 56);
+  }
+}
+.about-us .about-us-container .text-about-us p {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 32px;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(60, 2, 56);
+  animation-name: paragraph;
+  animation-duration: 6s;
+}
+@keyframes paragraph {
+  from {
+    color: #cc0052;
+  }
+  to {
+    color: rgb(60, 2, 56);
+  }
+}
+
+.partners {
+  margin-top: 30px;
+  box-sizing: border-box;
+  opacity: 1;
+}
+.partners .section-title {
+  text-align: center;
+  color: #660066;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-size: 36px;
+  letter-spacing: 2px;
+}
+.partners .container-partners {
+  background-color: rgb(247, 204, 204);
+  margin: 40px;
+}
+.partners .container-partners .image-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  gap: 25px;
+  align-items: center;
+  padding: 10px;
+}
+.partners .container-partners .biotrade {
+  background-color: white !important;
+}
+.partners .container-partners .janssen {
+  background-color: white !important;
+}
+
+footer {
+  background: rgb(252, 225, 223);
+  background: linear-gradient(90deg, rgb(252, 225, 223) 0%, rgb(251, 144, 144) 100%);
+  overflow-x: hidden;
+  height: 300px;
+  margin-top: 15px;
+}
+footer .footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 50px 30px;
+}
+footer .footer-section {
+  margin: 15px;
+  margin-top: 30px;
+}
+footer h4 {
+  font-family: "Montserrat";
+  color: #000080;
+  font-weight: 700;
+  font-size: 28px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  letter-spacing: 1.2px;
+}
+footer ul {
+  list-style: none;
+  padding: 0px;
+}
+footer ul li {
+  margin-bottom: 5px;
+}
+footer ul li a {
+  text-decoration: none;
+  color: #000099;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  text-transform: uppercase;
+  font-family: "Montserrat";
+  font-weight: 500;
+  transition: transform 0.54s ease-in;
+}
+footer ul li a:hover:hover {
+  transform: scale(1.1);
+  filter: brightness(0) saturate(100%) invert(10%) sepia(49%) saturate(5765%) hue-rotate(246deg) brightness(80%) contrast(121%);
+}
+footer .social-icons a img {
+  gap: 5px;
+  text-decoration: none;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+footer .social-icons a img:hover {
+  transform: scaleX(1.1);
+}/*# sourceMappingURL=main.css.map */
