@@ -43,3 +43,24 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("JavaScript is loaded and running.");
 });
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const banner = document.querySelector(".banner");
+    let position = 0;
+    let direction = 1; 
+    const speed = 0.5; 
+  
+    function moveBanner() {
+      position += direction * speed;
+      banner.style.transform = `translateX(${position}px)`;
+  
+      
+      if (position >= 50 || position <= 0) {
+        direction *= -1;
+      }
+  
+      requestAnimationFrame(moveBanner);
+    }
+  
+    moveBanner();
+  });

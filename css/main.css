@@ -60,38 +60,41 @@
 body {
   overflow-y: scroll;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 header {
-  background: #c7c1c1;
-  margin: 10px;
-  height: 100px;
-  max-width: 1500px;
-  margin-top: 0 auto;
+  background: #fff0f3;
+  margin: 10px 10px;
+  height: auto;
+  max-width: 95%;
+  padding: 0 30px;
 }
 header .header-container {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-between;
 }
 header .header-container .logo-header {
   flex: 1;
 }
 header .header-container .logo-header img {
-  padding: 10px;
+  padding: 10px 0;
   max-width: 150px;
 }
 header .header-container .burger-menu {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex: 2;
 }
-header .header-container .menu-data {
+header .header-container .burger-menu .menu-data {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   gap: 20px;
 }
-header .header-container .menu-data a {
-  text-decoration: overline;
+header .header-container .burger-menu .menu-data a {
+  text-decoration: underline;
   justify-content: center;
   font-family: "Montserrat";
   font-size: 16px;
@@ -100,28 +103,64 @@ header .header-container .menu-data a {
   transition: all 0.54s ease-in-out;
   text-transform: uppercase;
 }
-header .header-container .menu-data a:hover {
+header .header-container .burger-menu .menu-data a:hover {
   transform: scale(1.1);
   transition: all 0.54s ease-in-out;
-  color: #ae00ff;
+  color: #800f2f;
   cursor: pointer;
 }
 header .header-container .header-icons {
-  flex: 1;
   display: flex;
-  justify-content: flex-end;
   gap: 10px;
-  padding-right: 15px;
   transition: all 0.54s ease-in-out;
 }
 header .header-container .header-icons a img {
   width: 24px;
   height: 24px;
+  background: #f5c2d1;
 }
 header .header-container .header-icons a img:hover {
   transform: scale(1.1);
   transition: all 0.54s ease-in-out;
-  background-color: #ae00ff;
+  background-color: #f5c2d1;
+  cursor: pointer;
+}
+@media (max-width: 575.98px) {
+  header .header-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  header .header-container .logo-header {
+    max-width: 120px;
+  }
+  header .header-container .burger-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+  header .header-container .burger-menu .menu-data {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  header .header-container .burger-menu .header-icons {
+    justify-content: center !important;
+  }
+}
+@media (min-width: 576px) and (max-width: 1023.98px) {
+  header .header-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  header .header-container .logo-header {
+    flex: 1;
+  }
+  header .header-container .logo-header img {
+    padding: 10px 0;
+    max-width: 150px;
+  }
 }
 
 #home,
@@ -139,14 +178,10 @@ header .header-container .header-icons a img:hover {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(214, 202, 202);
-  border-top-left-radius: 150px;
-  border-top-right-radius: 60px;
-  border-bottom-right-radius: 50px;
-  border-bottom-left-radius: 130px;
-  border-color: rgb(247, 110, 110);
+  background-color: white;
+  position: relative;
   margin-bottom: 10px;
-  color: #da4d4d;
+  color: #590d22;
 }
 .heroshot .title-heroshot {
   font-family: "Montserrat";
@@ -156,42 +191,69 @@ header .header-container .header-icons a img:hover {
   font-weight: 900;
   font-size: 50px;
   padding-left: 30px;
+  margin-left: 50px;
+  justify-content: center;
 }
 .heroshot .image-heroshot {
   display: flex;
   right: 60px;
   padding-right: 30px;
-  object-fit: none;
+  object-fit: cover;
   margin: 10px;
 }
-.heroshot .image-heroshot img {
-  border-radius: 50%;
+@media (max-width: 575.98px) {
+  .heroshot {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .heroshot .title-heroshot {
+    font-size: 28px;
+    padding-left: 0;
+    margin-left: 0;
+    padding-top: 10px;
+  }
+  .heroshot .image-heroshot {
+    width: 534px;
+    height: auto;
+  }
+}
+@media (min-width: 576px) and (max-width: 1023.98px) {
+  .heroshot {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .heroshot .title-heroshot {
+    font-size: 28px;
+    padding: 10px 0;
+    text-align: center;
+  }
 }
 
 .services {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 3;
-  margin: 20px 20px 20px 20px;
+  gap: 20px;
   padding: 10px;
-  justify-content: space-around;
-  align-items: center;
+  place-items: center;
 }
 .services .services-container {
-  padding: 20px;
-  margin: 20px;
-  height: 350px;
-  width: 250px;
-  left: 60px;
-  background: #ffe6e6;
-  position: relative;
+  padding: 26px;
+  margin: 16px;
+  height: 450px;
+  width: 100%;
+  max-width: 350px;
+  box-sizing: border-box;
+  background: #ffe5ec;
 }
 .services .services-container .image-title-container h2 {
   font-family: "Montserrat";
   font-weight: 600;
   text-align: center;
   text-transform: uppercase;
-  color: #660066;
+  color: #590d22;
+  font-size: 25px;
 }
 .services .services-container .image-title-container img {
   display: block;
@@ -202,11 +264,11 @@ header .header-container .header-icons a img:hover {
 .services .services-container .info-container p {
   font-family: "Montserrat";
   font-weight: 400;
-  font-size: 17px;
+  font-size: 22px;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
-  color: #800040;
+  color: #590d22;
   letter-spacing: 1px;
 }
 .services .services-container .info-container button {
@@ -230,39 +292,65 @@ header .header-container .header-icons a img:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
+@media (min-width: 576px) and (max-width: 1023.98px) {
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 575.98px) {
+  .services {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .services .services-container {
+    width: 90%;
+    height: auto;
+  }
+  .services .info-container p {
+    font-size: 18px;
+  }
+  .services .info-container button {
+    height: 45px;
+    width: 90px;
+  }
+}
 
 .about-us {
-  background-color: rgb(218, 191, 191);
-  max-width: 1200;
-  max-height: 500;
+  background-color: #ffffff;
+  width: 100%;
+  height: auto;
 }
 .about-us .about-us-container {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  padding: 20px 20px 20px 20px;
-  gap: 20%;
-}
-.about-us .about-us-container .image-about {
-  padding-left: 70px;
-  box-shadow: 20px 20px 5px rgb(167, 216, 247);
+  margin: 10px;
+  padding: 20px;
+  gap: 8%;
 }
 .about-us .about-us-container .text-about-us {
-  margin-right: 60px;
+  width: 100%;
+  height: auto;
+  background-color: #ffe5ec;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 150px;
+  border-bottom-right-radius: 120px;
+  border-bottom-left-radius: 80px;
 }
 .about-us .about-us-container .text-about-us h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 170px;
+  margin-top: 80px;
   margin-bottom: 20px !important;
   font-family: "Montserrat";
   font-weight: 800;
   text-transform: uppercase;
   color: #cc0052;
   font-size: 55px;
-  color: rgb(60, 2, 56);
+  color: rgb(27, 1, 26);
   animation-name: title;
   animation-duration: 6s;
 }
@@ -271,7 +359,7 @@ header .header-container .header-icons a img:hover {
     color: #cc0052;
   }
   to {
-    color: rgb(60, 2, 56);
+    color: #590d22;
   }
 }
 .about-us .about-us-container .text-about-us p {
@@ -292,6 +380,84 @@ header .header-container .header-icons a img:hover {
     color: rgb(60, 2, 56);
   }
 }
+@media (max-width: 575.98px) {
+  .about-us .about-us-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    margin-left: 50px;
+  }
+  .about-us .about-us-container .text-about-us {
+    max-width: 100%;
+    padding: 15px;
+    border-radius: 40px;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    margin-top: 25px;
+  }
+  .about-us .about-us-container .text-about-us h2 {
+    font-size: 28px;
+  }
+  .about-us .about-us-container .text-about-us p {
+    font-size: 24px;
+    text-align: center;
+  }
+  .about-us .about-us-container .image-about {
+    margin: 0;
+    width: 250px;
+    height: auto;
+  }
+}
+@media (min-width: 576px) and (max-width: 1023.98px) {
+  .about-us .about-us-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-us .about-us-container .text-about-us {
+    max-width: 78%;
+    padding: 15px;
+    border-radius: 40px;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-us .about-us-container .text-about-us h2 {
+    font-size: 35px;
+    margin-top: 20px;
+  }
+  .about-us .about-us-container .text-about-us h2 p {
+    font-size: 21px;
+    text-align: center;
+  }
+}
+
+.banner-container {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner-container img {
+  max-width: 80%;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(227, 178, 178, 0.1);
+  border-radius: 8px;
+}
+@media (max-width: 575.98px) {
+  .banner-container img {
+    width: 500px;
+    height: 200px;
+  }
+}
+@media (min-width: 576px) and (max-width: 1023.98px) {
+  .banner-container img {
+    width: 80%;
+    height: auto;
+  }
+}
 
 .partners {
   margin-top: 30px;
@@ -300,21 +466,21 @@ header .header-container .header-icons a img:hover {
 }
 .partners .section-title {
   text-align: center;
-  color: #660066;
+  color: #590d22;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-family: "Montserrat";
   font-weight: 200;
-  font-size: 36px;
+  font-size: 40px;
   letter-spacing: 2px;
 }
 .partners .container-partners {
-  background-color: rgb(247, 204, 204);
+  background-color: #ffe0e9;
   margin: 40px;
 }
 .partners .container-partners .image-container {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-around;
   gap: 25px;
   align-items: center;
@@ -326,10 +492,22 @@ header .header-container .header-icons a img:hover {
 .partners .container-partners .janssen {
   background-color: white !important;
 }
+@media (max-width: 575.98px) {
+  .partners .section-title {
+    font-size: 24px;
+    margin: 10px;
+  }
+  .partners .container-partners {
+    margin: 20px;
+  }
+  .partners .container-partners .image-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
 
 footer {
-  background: rgb(252, 225, 223);
-  background: linear-gradient(90deg, rgb(252, 225, 223) 0%, rgb(251, 144, 144) 100%);
+  background: #ffe5ec;
   overflow-x: hidden;
   height: 300px;
   margin-top: 15px;
@@ -346,12 +524,13 @@ footer .footer-section {
 }
 footer h4 {
   font-family: "Montserrat";
-  color: #000080;
+  color: #590d22;
   font-weight: 700;
   font-size: 28px;
   text-transform: uppercase;
   margin-bottom: 10px;
   letter-spacing: 1.2px;
+  text-align: center;
 }
 footer ul {
   list-style: none;
@@ -362,16 +541,22 @@ footer ul li {
 }
 footer ul li a {
   text-decoration: none;
-  color: #000099;
+  color: #590d22;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
   text-transform: uppercase;
   font-family: "Montserrat";
   font-weight: 500;
   transition: transform 0.54s ease-in;
+  margin: 5px;
 }
 footer ul li a:hover:hover {
   transform: scale(1.1);
-  filter: brightness(0) saturate(100%) invert(10%) sepia(49%) saturate(5765%) hue-rotate(246deg) brightness(80%) contrast(121%);
+  color: #ff758f;
+}
+footer ul li a img {
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
 }
 footer .social-icons a img {
   gap: 5px;
@@ -380,4 +565,30 @@ footer .social-icons a img {
 }
 footer .social-icons a img:hover {
   transform: scaleX(1.1);
+}
+@media (max-width: 575.98px) {
+  footer .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 15px;
+    margin-left: 30px;
+  }
+  footer .footer-section {
+    margin: 10px 0;
+    text-align: center;
+  }
+  footer .footer-section h4 {
+    font-size: 20px;
+  }
+  footer .footer-section ul li a {
+    font-size: 13px;
+  }
+  footer .social-icons {
+    margin-top: 15px;
+  }
+  footer .social-icons a img {
+    width: 30px;
+    height: 30px;
+  }
 }/*# sourceMappingURL=main.css.map */
